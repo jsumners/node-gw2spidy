@@ -18,10 +18,10 @@ function Items() {
 }
 
 /**
- * This callback is invoked when a query for a list of items. This could be
- * all available items, or all items of a specific type.
+ * This callback is invoked when a query for a list of items has completed.
+ * This could be all available items, or all items of a specific type.
  *
- * @callback ItemListCallback
+ * @callback Items~ItemListCallback
  * @param {Error} err An error or null (no error)
  * @param {ItemListResponse} response An instance of ItemListResponse
  */
@@ -30,7 +30,7 @@ function Items() {
  * Gets a list of <strong>all</strong> available items. This is a large list.
  * You should use a different method to narrow down your search.
  *
- * @param {ItemListCallback} cb The callback to invoke when done
+ * @param {Items~ItemListCallback} cb The callback to invoke when done
  */
 Items.prototype.getAll = function getItems(cb) {
   spidyClient.get('/all-items/all', function clientCB(err, json) {
@@ -47,7 +47,7 @@ Items.prototype.getAll = function getItems(cb) {
 /**
  * This callback is invoked when a query for a specific item has completed.
  *
- * @callback ItemDataCallback
+ * @callback Items~ItemDataCallback
  * @param {Error} err An error or null (no error)
  * @param {ItemDataResponse} response An instance of ItemDataResponse
  */
@@ -58,7 +58,7 @@ Items.prototype.getAll = function getItems(cb) {
  * supply 49192 as the <code>itemId</code>.
  *
  * @param {number} itemId The unique item identfier to retrieve
- * @param {ItemDataCallback} cb The callback to invoke when done
+ * @param {Items~ItemDataCallback} cb The callback to invoke when done
  * @since 0.2.0
  */
 Items.prototype.get = function(itemId, cb) {
@@ -92,7 +92,7 @@ Items.prototype.get = function(itemId, cb) {
  * }</pre>
  *
  * @param {string|object} term The search term or an object with term and page
- * @param {ItemListCallback} cb The callback to invoke when done
+ * @param {Items~ItemListCallback} cb The callback to invoke when done
  */
 Items.prototype.search = function(term, cb) {
   var searchTerm = term,

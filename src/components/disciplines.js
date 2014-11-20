@@ -20,7 +20,7 @@ function Disciplines() {
  * This callback is invoked when a call to the disciplines endpoint has
  * completed.
  *
- * @callback DisciplinesCallback
+ * @callback Disciplines~DisciplinesCallback
  * @param {Error} err An error or null (no error)
  * @param {DisciplinesResponse} response The list of disciplines
  */
@@ -28,7 +28,7 @@ function Disciplines() {
 /**
  * Retrieve the list of disciplines from the GW2 Spidy REST API.
  *
- * @param {DisciplinesCallback} cb The callback to invoke when done
+ * @param {Disciplines~DisciplinesCallback} cb The callback to invoke when done
  */
 Disciplines.prototype.get = function getDisciplines(cb) {
   spidyClient.get('/disciplines', function clientCB(err, json) {

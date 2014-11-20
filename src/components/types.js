@@ -20,7 +20,7 @@ function Types() {
  * This callback is invoked when a request to get the list of types has
  * completed.
  *
- * @callback TypesCallback
+ * @callback Types~TypesCallback
  * @param {Error} err An error or null (no error)
  * @param {TypeListResponse} response The list of types
  */
@@ -28,7 +28,7 @@ function Types() {
 /**
  * Retrieve the list of possible types from the GW2 Spidy REST API.
  *
- * @param {TypesCallback} cb The callback to invoke when done
+ * @param {Types~TypesCallback} cb The callback to invoke when done
  */
 Types.prototype.get = function getTypes(cb) {
   spidyClient.get('/types', function(err, json) {
