@@ -1,7 +1,8 @@
 'use strict';
 
 var spidyClient = {},
-    ItemListResponse = function(){};
+    ItemListResponse = function(){},
+    ItemDataResponse = function(){};
 
 /**
  * An interface for interacting with the Items portion of the GW2 Spidy
@@ -39,6 +40,35 @@ Items.prototype.getAll = function getItems(cb) {
     }
 
     var response = new ItemListResponse(json);
+    cb(null, response);
+  });
+};
+
+/**
+ * This callback is invoked when a query for a specific item has completed.
+ *
+ * @callback ItemDataCallback
+ * @param {Error} err An error or null (no error)
+ * @param {ItemDataResponse} response An instance of ItemDataResponse
+ */
+
+/**
+ * Query the GW2 Spidy database for a specific item identified by its unique
+ * item number. For example, to get the details for The Juggernaut, you'd
+ * supply 49192 as the <code>itemId</code>.
+ *
+ * @param {number} itemId The unique item identfier to retrieve
+ * @param {ItemDataCallback} cb The callback to invoke when done
+ * @since 0.2.0
+ */
+Items.prototype.get = function(itemId, cb) {
+  spidyClient.get('/item/' + itemId, function clientCB(err, json) {
+    if (err) {
+      cb(err);
+      return;
+    }
+
+    var response = new ItemDataResponse(json);
     cb(null, response);
   });
 };
@@ -84,12 +114,17 @@ Items.prototype.search = function(term, cb) {
   });
 };
 
-exports = module.exports = function($spidyClient, $ItemListResponse) {
+exports = module.exports = function($spidyClient, $ItemListResponse, $ItemDataResponse) {
   spidyClient = $spidyClient;
   ItemListResponse = $ItemListResponse;
+  ItemDataResponse = $ItemDataResponse;
 
   return new Items();
 };
 
-exports['@require'] = [ 'spidyClient', 'models/ItemListResponse' ];
+exports['@require'] = [
+  'spidyClient',
+  'models/ItemListResponse',
+  'models/ItemDataResponse'
+];
 exports['@singleton'] = true;
