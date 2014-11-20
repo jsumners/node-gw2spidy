@@ -21,3 +21,4 @@ The gw2spidy module provides easy access to the following submodules:
 * [Disciplines](Disciplines.html)
 * [Items](Items.html)
 * [Types](Types.html)
+* [Rarities](Rarities.html)

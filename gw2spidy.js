@@ -47,6 +47,14 @@ Gw2SpidyClient.prototype.items = ioc.create('items');
  */
 Gw2SpidyClient.prototype.types = ioc.create('types');
 
+/**
+ * An instance of {@link Rarities} for interacting with the Rarities portion
+ * of the API.
+ *
+ * @type {Rarities}
+ */
+Gw2SpidyClient.prototype.rarities = ioc.create('rarities');
+
 exports = module.exports = (function() {
   return new Gw2SpidyClient();
 }());

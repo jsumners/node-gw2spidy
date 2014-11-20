@@ -18,9 +18,11 @@ var ItemListResponseBatch = ioc.create('test/models/ItemListResponseTest');
 var DisciplinesResponseBatch = ioc.create('test/models/DisciplinesResponseTest');
 var TypeListResponseBatch = ioc.create('test/models/TypeListResponseTest');
 var ItemDataResponseBatch = ioc.create('test/models/ItemDataResponseTest');
+var RarityListResponseBatch = ioc.create('test/models/RarityListResponseTest');
 vows.describe('ItemListResponse')
   .addBatch(ItemListResponseBatch)
   .addBatch(DisciplinesResponseBatch)
   .addBatch(TypeListResponseBatch)
   .addBatch(ItemDataResponseBatch)
+  .addBatch(RarityListResponseBatch)
   .run();
