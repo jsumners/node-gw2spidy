@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: src/models/ItemDataResponse.js</title>
+    <title>JSDoc: Source: src/models/RarityListResponse.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: src/models/ItemDataResponse.js</h1>
+    <h1 class="page-title">Source: src/models/RarityListResponse.js</h1>
 
     
 
@@ -29,16 +29,15 @@
             <pre class="prettyprint source linenums"><code>'use strict';
 
 /**
- * Represents a response as returned by the Item Data portion of the
+ * Represents a list of rarities returned from the Rarities portion of the
  * GW2 Spidy REST API.
  *
- * @param {string} json A sting of JSON that represents a response
- * @returns {ItemDataResponse}
+ * @param {string} json A string of JSON representing a rarity list response
  * @constructor
  */
-function ItemDataResponse(json) {
-  if (! (this instanceof ItemDataResponse)) {
-    return new ItemDataResponse(json);
+function RarityListResponse(json) {
+  if (! (this instanceof RarityListResponse)) {
+    return new RarityListResponse(json);
   }
 
   var self = Object.getPrototypeOf(this);
@@ -50,22 +49,26 @@ function ItemDataResponse(json) {
   }
 }
 
-ItemDataResponse.prototype = {
+RarityListResponse.prototype = {
   /**
-   * Retrieve the item data object as returned by the GW2 Spidy REST API.
+   * A list of {@link Rarity} objects as returned by the GW2 Spidy REST API.
    *
-   * @returns {object} The item data object
+   * @returns {array}
    */
-  get result() {
-    return this._result;
+  get results() {
+    return (this._results) ? this._results : [];
   },
-  set result(result) {
-    this._result = result;
+  set results(results) {
+    this._results = (results) ? results : [];
   }
 };
 
 exports = module.exports = function() {
-  return ItemDataResponse;
+  // Yes, we could simply import TypeListResponse and return it,
+  // but then JSDoc wouldn't know how to handle the situation since it
+  // seems to have no concept of inheritance.
+
+  return RarityListResponse;
 };
 
 exports['@singleton'] = false;</code></pre>

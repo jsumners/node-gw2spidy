@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: SpidyClient</title>
+    <title>JSDoc: Class: Rarities</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: SpidyClient</h1>
+    <h1 class="page-title">Class: Rarities</h1>
 
     
 
@@ -29,7 +29,7 @@
 <header>
     
         <h2>
-        SpidyClient
+        Rarities
         </h2>
         
     
@@ -41,7 +41,7 @@
         
 <dt>
     
-        <h4 class="name" id="SpidyClient"><span class="type-signature"></span>new SpidyClient<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="SpidyClient.html">SpidyClient</a>}</span></h4>
+        <h4 class="name" id="Rarities"><span class="type-signature"></span>new Rarities<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Rarities.html">Rarities</a>}</span></h4>
 
         
     
@@ -50,9 +50,8 @@
 
     
     <div class="description">
-        An interface for getting data from the GW2 Spidy REST API. You shouldn't
-need to use this interface directly. The <a href="Gw2SpidyClient.html">Gw2SpidyClient</a> provides
-a higher level interface that is easier to use.
+        An interface for interacting with the Rarities portion of the GW2 Spidy
+REST API.
     </div>
     
 
@@ -94,7 +93,7 @@ a higher level interface that is easier to use.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_components_spidyClient.js.html">src/components/spidyClient.js</a>, <a href="src_components_spidyClient.js.html#line18">line 18</a>
+        <a href="src_components_rarities.js.html">src/components/rarities.js</a>, <a href="src_components_rarities.js.html#line13">line 13</a>
     </li></ul></dd>
     
 
@@ -128,7 +127,7 @@ a higher level interface that is easier to use.
     </dt>
     <dd>
         
-<span class="param-type"><a href="SpidyClient.html">SpidyClient</a></span>
+<span class="param-type"><a href="Rarities.html">Rarities</a></span>
 
 
     </dd>
@@ -161,7 +160,7 @@ a higher level interface that is easier to use.
             
 <dt>
     
-        <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">(endpoint, cb)</span><span class="type-signature"></span></h4>
+        <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">(cb)</span><span class="type-signature"></span></h4>
 
         
     
@@ -170,7 +169,8 @@ a higher level interface that is easier to use.
 
     
     <div class="description">
-        Attempts to retrieve JSON data from a specified endpoint, e.g. `/types`.
+        Issue a request to the REST API for a list of the possible rarities,
+e.g. "legendary".
     </div>
     
 
@@ -206,36 +206,13 @@ a higher level interface that is easier to use.
 
         <tr>
             
-                <td class="name"><code>endpoint</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">An endpoint on the GW2 Spidy API</td>
-        </tr>
-
-    
-
-        <tr>
-            
                 <td class="name"><code>cb</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="SpidyClient.html#RestGetCallback">SpidyClient~RestGetCallback</a></span>
+<span class="param-type">Rarities~RaritiesCacllback</span>
 
 
             
@@ -283,7 +260,7 @@ a higher level interface that is easier to use.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_components_spidyClient.js.html">src/components/spidyClient.js</a>, <a href="src_components_spidyClient.js.html#line39">line 39</a>
+        <a href="src_components_rarities.js.html">src/components/rarities.js</a>, <a href="src_components_rarities.js.html#line34">line 34</a>
     </li></ul></dd>
     
 
@@ -320,7 +297,7 @@ a higher level interface that is easier to use.
                 
 <dt>
     
-        <h4 class="name" id="RestGetCallback"><span class="type-signature"></span>RestGetCallback<span class="signature">(err, json)</span><span class="type-signature"></span></h4>
+        <h4 class="name" id="RaritiesCallback"><span class="type-signature"></span>RaritiesCallback<span class="signature">(err, response)</span><span class="type-signature"></span></h4>
 
         
     
@@ -329,8 +306,8 @@ a higher level interface that is easier to use.
 
     
     <div class="description">
-        This callback is invoked when a GET request to the GW2 Spidy REST API has
-completed.
+        This callback is invoked when a request to get the list of rarities
+has completed.
     </div>
     
 
@@ -382,20 +359,20 @@ completed.
 
             
 
-            <td class="description last">An error object or null (no error)</td>
+            <td class="description last">An error or null (no error)</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>json</code></td>
+                <td class="name"><code>response</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">RaritiesListResponse</span>
 
 
             
@@ -405,7 +382,7 @@ completed.
 
             
 
-            <td class="description last">A string of JSON that represents the result</td>
+            <td class="description last">An instance of RaritiesListResponse</td>
         </tr>
 
     
@@ -443,7 +420,7 @@ completed.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_components_spidyClient.js.html">src/components/spidyClient.js</a>, <a href="src_components_spidyClient.js.html#line24">line 24</a>
+        <a href="src_components_rarities.js.html">src/components/rarities.js</a>, <a href="src_components_rarities.js.html#line19">line 19</a>
     </li></ul></dd>
     
 
