@@ -1,6 +1,6 @@
 {
   "name": "gw2spidy",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A node module for interfacing with the GW2 Spidy API",
   "homepage": "https://github.com/jsumners/node-gw2spidy",
   "repository": {
