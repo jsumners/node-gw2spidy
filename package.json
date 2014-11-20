@@ -15,7 +15,10 @@
     "test": "grunt shell:test"
   },
   "keywords": [
-    "gw2", "guild", "wars", "guild wars"
+    "gw2",
+    "guild",
+    "wars",
+    "guild wars"
   ],
   "author": "James Sumners",
   "license": "MIT",
@@ -24,6 +27,7 @@
   },
   "devDependencies": {
     "grunt": "^0.4.5",
+    "grunt-github-pages": "0.0.4",
     "grunt-shell": "^1.1.1",
     "jsdoc": "^3.3.0-alpha10",
     "load-grunt-tasks": "^1.0.0",
