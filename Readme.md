@@ -1,6 +1,14 @@
 # GW2Spidy
 
 This is an interface to the [Gw2 Spidy](http://gw2spidy.com/) REST API.
+The documentation for this module's API is located at
+[http://jsumners.github.io/node-gw2spidy/](http://jsumners.github.io/node-gw2spidy/).
+
+## Install
+
+```bash
+npm install --save gw2spidy
+```
 
 ## Example
 
