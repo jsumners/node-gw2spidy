@@ -97,6 +97,8 @@ Items.prototype.get = function(itemId, cb) {
  *    buyOrSell: 'buy'
  * }
  * </pre>
+ *
+ * @since 0.3.0
  * @param {number|object} params The item id to lookup or a params object
  * @param {Items~ItemListingsCallback} cb The callback to invoke when done
  */
@@ -134,6 +136,7 @@ Items.prototype.getListings = function(params, cb) {
  * }
  * </pre>
  *
+ * @since 0.3.0
  * @param {number|object} params The item id to look up or a valid params object
  * @param {Items~ItemListingsCallback} cb The callback to invoke when done
  */
@@ -168,6 +171,7 @@ Items.prototype.getBuyListings = function(params, cb) {
  * }
  * </pre>
  *
+ * @since 0.3.0
  * @param {number|object} params The item id to look up or a valid params object
  * @param {Items~ItemListingsCallback} cb The callback to invoke when done
  */

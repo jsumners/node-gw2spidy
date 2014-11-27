@@ -3,6 +3,7 @@
 /**
  * Represents a list of listings returned from GW2 Spidy's full item list.
  *
+ * @since 0.3.0
  * @param {string} json A string of JSON representing the listings response
  * @returns {ItemListingsResponse}
  * @constructor
@@ -26,8 +27,8 @@ function ItemListingsResponse(json) {
 
 ItemListingsResponse.prototype = {
   /**
-   * Used to indicate if the {@link #results} are listings of sell orders or
-   * buy orders. The default is 'sell'.
+   * Used to indicate if the {@link ItemListingsResponse#results} are listings
+   * of sell orders or buy orders. The default is 'sell'.
    *
    * @returns {string} 'sell' if the results are sell order, 'buy' otherwise
    */
