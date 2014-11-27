@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: src/models/ItemListResponse.js</title>
+    <title>JSDoc: Source: src/models/ItemListingsResponse.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: src/models/ItemListResponse.js</h1>
+    <h1 class="page-title">Source: src/models/ItemListingsResponse.js</h1>
 
     
 
@@ -29,15 +29,16 @@
             <pre class="prettyprint source linenums"><code>'use strict';
 
 /**
- * Represents a list of items returned from GW2 Spidy's full item list.
+ * Represents a list of listings returned from GW2 Spidy's full item list.
  *
- * @param {string} json A string of JSON that represents a Spidy result list
- * @returns {ItemListResponse}
+ * @since 0.3.0
+ * @param {string} json A string of JSON representing the listings response
+ * @returns {ItemListingsResponse}
  * @constructor
  */
-function ItemListResponse(json) {
-  if (! (this instanceof ItemListResponse)) {
-    return new ItemListResponse();
+function ItemListingsResponse(json) {
+  if (! (this instanceof ItemListingsResponse)) {
+    return ItemListingsResponse(json);
   }
 
   var self = Object.getPrototypeOf(this);
@@ -46,12 +47,26 @@ function ItemListResponse(json) {
     var parsedJson = JSON.parse(json);
     Object.keys(parsedJson).forEach(function mapItemJson(val) {
       var prop = (val === 'last_page') ? 'lastPage' : val;
+      prop = (prop === 'sell-or-buy') ? 'sellOrBuy' : prop;
       this[prop] = parsedJson[val];
     }, self);
   }
 }
 
-ItemListResponse.prototype = {
+ItemListingsResponse.prototype = {
+  /**
+   * Used to indicate if the {@link ItemListingsResponse#results} are listings
+   * of sell orders or buy orders. The default is 'sell'.
+   *
+   * @returns {string} 'sell' if the results are sell order, 'buy' otherwise
+   */
+  get sellOrBuy() {
+    return (this._sellOrBuy) ? this._sellOrBuy : 'sell';
+  },
+  set sellOrBuy(sellOrBuy) {
+    this._sellOrBuy = (sellOrBuy) ? sellOrBuy : 'sell';
+  },
+
   /**
    * The number of results in the current page of results if the API
    * returned such information. Otherwise, it is -1.
@@ -105,7 +120,7 @@ ItemListResponse.prototype = {
   },
 
   /**
-   * Retrieve the list of {@link Item} objects as returned by the REST API.
+   * Retrieve the list of {@link Listing} objects as returned by the REST API.
    *
    * @returns {array}
    */
@@ -117,8 +132,8 @@ ItemListResponse.prototype = {
   }
 };
 
-exports = module.exports = function() {
-  return ItemListResponse;
+exports = module.exports = function(){
+  return ItemListingsResponse;
 };
 
 exports['@singleton'] = false;</code></pre>

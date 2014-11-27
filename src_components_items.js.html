@@ -30,7 +30,8 @@
 
 var spidyClient = {},
     ItemListResponse = function(){},
-    ItemDataResponse = function(){};
+    ItemDataResponse = function(){},
+    ItemListingsResponse = function(){};
 
 /**
  * An interface for interacting with the Items portion of the GW2 Spidy
@@ -102,6 +103,124 @@ Items.prototype.get = function(itemId, cb) {
 };
 
 /**
+ * This callback is invoked upon completion of a request for retrieving
+ * item buy or sell listings from the GW2 Spidy REST API.
+ *
+ * @callback Items~ItemListingsCallback
+ * @param {Error} err An error or null (no error)
+ * @param {ItemListingsResponse} An instance of ItemsListingsResponse
+ */
+
+/**
+ * &lt;p>Retrieves a set of buy or sell listings from the GW2 Spidy API. The
+ * &lt;code>params&lt;/code> parameter is an object with an "itemId" property,
+ * a "page" property, and a "buyOrSell" property (set to 'buy' or 'sell').&lt;/p>
+ *
+ * &lt;p>Example:&lt;/p>
+ *
+ * &lt;pre>
+ * {
+ *    itemId: 49192,
+ *    page: 1,
+ *    buyOrSell: 'buy'
+ * }
+ * &lt;/pre>
+ *
+ * @since 0.3.0
+ * @param {number|object} params The item id to lookup or a params object
+ * @param {Items~ItemListingsCallback} cb The callback to invoke when done
+ */
+Items.prototype.getListings = function(params, cb) {
+  if (typeof params !== 'object' ||
+    !params.itemId || !params.page || !params.buyOrSell) {
+    throw new Error('A valid params parameter must be supplied');
+  }
+
+  spidyClient.get(
+    '/listings/' + params.buyOrSell + '/' + params.page,
+    function(err, json) {
+      if (err) {
+        cb(err);
+        return;
+      }
+
+      var response = new ItemListingsResponse(json);
+      cb(null, response);
+    }
+  );
+};
+
+/**
+ * &lt;p>This is a wrapper to {@link Items#getListings}. The &lt;code>params&lt;/code>
+ * parameter can be a number, identifying the item to look up, or an object
+ * with properties "itemId" and "page".&lt;/p>
+ *
+ * &lt;p>Example:&lt;/p>
+ *
+ * &lt;pre>
+ * {
+ *   itemId: 49192,
+ *   page: 1
+ * }
+ * &lt;/pre>
+ *
+ * @since 0.3.0
+ * @param {number|object} params The item id to look up or a valid params object
+ * @param {Items~ItemListingsCallback} cb The callback to invoke when done
+ */
+Items.prototype.getBuyListings = function(params, cb) {
+  var itemId = -1,
+      page = 1;
+  if (typeof params === 'object') {
+    itemId = params.itemId;
+    page = params.page;
+  } else if (typeof params === 'number') {
+    itemId = params;
+  }
+
+  this.getListings({
+    itemId: itemId,
+    page: page,
+    buyOrSell: 'buy'
+  }, cb);
+};
+
+/**
+ * &lt;p>This is a wrapper to {@link Items#getListings}. The &lt;code>params&lt;/code>
+ * parameter can be a number, identifying the item to look up, or an object
+ * with properties "itemId" and "page".&lt;/p>
+ *
+ * &lt;p>Example:&lt;/p>
+ *
+ * &lt;pre>
+ * {
+ *   itemId: 49192,
+ *   page: 1
+ * }
+ * &lt;/pre>
+ *
+ * @since 0.3.0
+ * @param {number|object} params The item id to look up or a valid params object
+ * @param {Items~ItemListingsCallback} cb The callback to invoke when done
+ */
+Items.prototype.getSellListings = function(params, cb) {
+  var itemId = -1,
+      page = 1;
+  if (typeof params === 'object') {
+    itemId = params.itemId;
+    page = params.page;
+  } else if (typeof params === 'number') {
+    itemId = params;
+  }
+
+  this.getListings({
+    itemId: itemId,
+    page: page,
+    buyOrSell: 'sell'
+  }, cb);
+};
+
+/**
  * &lt;p>Search for items in the GW2 Spidy database. The search &lt;code>term&lt;/code>
  * can be a string or an object.&lt;/p>
  *
@@ -142,10 +261,16 @@ Items.prototype.search = function(term, cb) {
   });
 };
 
-exports = module.exports = function($spidyClient, $ItemListResponse, $ItemDataResponse) {
+exports = module.exports = function(
+  $spidyClient,
+  $ItemListResponse,
+  $ItemDataResponse,
+  $ItemListingsResponse
+) {
   spidyClient = $spidyClient;
   ItemListResponse = $ItemListResponse;
   ItemDataResponse = $ItemDataResponse;
+  ItemListingsResponse = $ItemListingsResponse;
 
   return new Items();
 };
@@ -153,7 +278,8 @@ exports = module.exports = function($spidyClient, $ItemListResponse, $ItemDataRe
 exports['@require'] = [
   'spidyClient',
   'models/ItemListResponse',
-  'models/ItemDataResponse'
+  'models/ItemDataResponse',
+  'models/ItemListingsResponse'
 ];
 exports['@singleton'] = true;</code></pre>
         </article>
@@ -165,13 +291,13 @@ exports['@singleton'] = true;</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="Disciplines.html">Disciplines</a></li><li><a href="DisciplinesResponse.html">DisciplinesResponse</a></li><li><a href="Gw2SpidyClient.html">Gw2SpidyClient</a></li><li><a href="ItemDataResponse.html">ItemDataResponse</a></li><li><a href="ItemListResponse.html">ItemListResponse</a></li><li><a href="Items.html">Items</a></li><li><a href="Rarities.html">Rarities</a></li><li><a href="RarityListResponse.html">RarityListResponse</a></li><li><a href="SpidyClient.html">SpidyClient</a></li><li><a href="TypeListResponse.html">TypeListResponse</a></li><li><a href="Types.html">Types</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="Disciplines.html">Disciplines</a></li><li><a href="DisciplinesResponse.html">DisciplinesResponse</a></li><li><a href="Gw2SpidyClient.html">Gw2SpidyClient</a></li><li><a href="ItemDataResponse.html">ItemDataResponse</a></li><li><a href="ItemListingsResponse.html">ItemListingsResponse</a></li><li><a href="ItemListResponse.html">ItemListResponse</a></li><li><a href="Items.html">Items</a></li><li><a href="Rarities.html">Rarities</a></li><li><a href="RarityListResponse.html">RarityListResponse</a></li><li><a href="SpidyClient.html">SpidyClient</a></li><li><a href="TypeListResponse.html">TypeListResponse</a></li><li><a href="Types.html">Types</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha10</a> on Thu Nov 20 2014 12:08:14 GMT-0500 (EST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha10</a> on Wed Nov 26 2014 20:00:12 GMT-0500 (EST)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -93,7 +93,7 @@ REST API.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_components_items.js.html">src/components/items.js</a>, <a href="src_components_items.js.html#line14">line 14</a>
+        <a href="src_components_items.js.html">src/components/items.js</a>, <a href="src_components_items.js.html#line15">line 15</a>
     </li></ul></dd>
     
 
@@ -287,7 +287,7 @@ supply 49192 as the <code>itemId</code>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_components_items.js.html">src/components/items.js</a>, <a href="src_components_items.js.html#line64">line 64</a>
+        <a href="src_components_items.js.html">src/components/items.js</a>, <a href="src_components_items.js.html#line65">line 65</a>
     </li></ul></dd>
     
 
@@ -418,7 +418,518 @@ You should use a different method to narrow down your search.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_components_items.js.html">src/components/items.js</a>, <a href="src_components_items.js.html#line35">line 35</a>
+        <a href="src_components_items.js.html">src/components/items.js</a>, <a href="src_components_items.js.html#line36">line 36</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    
+        <h4 class="name" id="getBuyListings"><span class="type-signature"></span>getBuyListings<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>This is a wrapper to <a href="Items.html#getListings">Items#getListings</a>. The <code>params</code>
+parameter can be a number, identifying the item to look up, or an object
+with properties "itemId" and "page".</p>
+
+<p>Example:</p>
+
+<pre>
+{
+  itemId: 49192,
+  page: 1
+}
+</pre>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+|
+
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The item id to look up or a valid params object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Items.html#ItemListingsCallback">Items~ItemListingsCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The callback to invoke when done</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.3.0</dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_components_items.js.html">src/components/items.js</a>, <a href="src_components_items.js.html#line143">line 143</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    
+        <h4 class="name" id="getListings"><span class="type-signature"></span>getListings<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Retrieves a set of buy or sell listings from the GW2 Spidy API. The
+<code>params</code> parameter is an object with an "itemId" property,
+a "page" property, and a "buyOrSell" property (set to 'buy' or 'sell').</p>
+
+<p>Example:</p>
+
+<pre>
+{
+   itemId: 49192,
+   page: 1,
+   buyOrSell: 'buy'
+}
+</pre>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+|
+
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The item id to lookup or a params object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Items.html#ItemListingsCallback">Items~ItemListingsCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The callback to invoke when done</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.3.0</dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_components_items.js.html">src/components/items.js</a>, <a href="src_components_items.js.html#line105">line 105</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    
+        <h4 class="name" id="getSellListings"><span class="type-signature"></span>getSellListings<span class="signature">(params, cb)</span><span class="type-signature"></span></h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>This is a wrapper to <a href="Items.html#getListings">Items#getListings</a>. The <code>params</code>
+parameter can be a number, identifying the item to look up, or an object
+with properties "itemId" and "page".</p>
+
+<p>Example:</p>
+
+<pre>
+{
+  itemId: 49192,
+  page: 1
+}
+</pre>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+|
+
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The item id to look up or a valid params object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Items.html#ItemListingsCallback">Items~ItemListingsCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The callback to invoke when done</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>0.3.0</dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_components_items.js.html">src/components/items.js</a>, <a href="src_components_items.js.html#line178">line 178</a>
     </li></ul></dd>
     
 
@@ -589,7 +1100,7 @@ The default page is 1, and pages are in lists of 100.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_components_items.js.html">src/components/items.js</a>, <a href="src_components_items.js.html#line97">line 97</a>
+        <a href="src_components_items.js.html">src/components/items.js</a>, <a href="src_components_items.js.html#line216">line 216</a>
     </li></ul></dd>
     
 
@@ -748,7 +1259,7 @@ The default page is 1, and pages are in lists of 100.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_components_items.js.html">src/components/items.js</a>, <a href="src_components_items.js.html#line47">line 47</a>
+        <a href="src_components_items.js.html">src/components/items.js</a>, <a href="src_components_items.js.html#line48">line 48</a>
     </li></ul></dd>
     
 
@@ -902,7 +1413,161 @@ This could be all available items, or all items of a specific type.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_components_items.js.html">src/components/items.js</a>, <a href="src_components_items.js.html#line20">line 20</a>
+        <a href="src_components_items.js.html">src/components/items.js</a>, <a href="src_components_items.js.html#line21">line 21</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+            
+                
+<dt>
+    
+        <h4 class="name" id="ItemListingsCallback"><span class="type-signature"></span>ItemListingsCallback<span class="signature">(err, An)</span><span class="type-signature"></span></h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        This callback is invoked upon completion of a request for retrieving
+item buy or sell listings from the GW2 Spidy REST API.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>err</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Error</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">An error or null (no error)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>An</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ItemListingsResponse.html">ItemListingsResponse</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">instance of ItemsListingsResponse</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_components_items.js.html">src/components/items.js</a>, <a href="src_components_items.js.html#line77">line 77</a>
     </li></ul></dd>
     
 
@@ -943,13 +1608,13 @@ This could be all available items, or all items of a specific type.
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="Disciplines.html">Disciplines</a></li><li><a href="DisciplinesResponse.html">DisciplinesResponse</a></li><li><a href="Gw2SpidyClient.html">Gw2SpidyClient</a></li><li><a href="ItemDataResponse.html">ItemDataResponse</a></li><li><a href="ItemListResponse.html">ItemListResponse</a></li><li><a href="Items.html">Items</a></li><li><a href="Rarities.html">Rarities</a></li><li><a href="RarityListResponse.html">RarityListResponse</a></li><li><a href="SpidyClient.html">SpidyClient</a></li><li><a href="TypeListResponse.html">TypeListResponse</a></li><li><a href="Types.html">Types</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="Disciplines.html">Disciplines</a></li><li><a href="DisciplinesResponse.html">DisciplinesResponse</a></li><li><a href="Gw2SpidyClient.html">Gw2SpidyClient</a></li><li><a href="ItemDataResponse.html">ItemDataResponse</a></li><li><a href="ItemListingsResponse.html">ItemListingsResponse</a></li><li><a href="ItemListResponse.html">ItemListResponse</a></li><li><a href="Items.html">Items</a></li><li><a href="Rarities.html">Rarities</a></li><li><a href="RarityListResponse.html">RarityListResponse</a></li><li><a href="SpidyClient.html">SpidyClient</a></li><li><a href="TypeListResponse.html">TypeListResponse</a></li><li><a href="Types.html">Types</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha10</a> on Thu Nov 20 2014 12:08:14 GMT-0500 (EST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha10</a> on Wed Nov 26 2014 20:00:12 GMT-0500 (EST)
 </footer>
 
 <script> prettyPrint(); </script>
