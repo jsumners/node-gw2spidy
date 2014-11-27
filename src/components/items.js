@@ -2,7 +2,8 @@
 
 var spidyClient = {},
     ItemListResponse = function(){},
-    ItemDataResponse = function(){};
+    ItemDataResponse = function(){},
+    ItemListingsResponse = function(){};
 
 /**
  * An interface for interacting with the Items portion of the GW2 Spidy
@@ -74,6 +75,120 @@ Items.prototype.get = function(itemId, cb) {
 };
 
 /**
+ * This callback is invoked upon completion of a request for retrieving
+ * item buy or sell listings from the GW2 Spidy REST API.
+ *
+ * @callback Items~ItemListingsCallback
+ * @param {Error} err An error or null (no error)
+ * @param {ItemListingsResponse} An instance of ItemsListingsResponse
+ */
+
+/**
+ * <p>Retrieves a set of buy or sell listings from the GW2 Spidy API. The
+ * <code>params</code> parameter is an object with an "itemId" property,
+ * a "page" property, and a "buyOrSell" property (set to 'buy' or 'sell').</p>
+ *
+ * <p>Example:</p>
+ *
+ * <pre>
+ * {
+ *    itemId: 49192,
+ *    page: 1,
+ *    buyOrSell: 'buy'
+ * }
+ * </pre>
+ * @param {number|object} params The item id to lookup or a params object
+ * @param {Items~ItemListingsCallback} cb The callback to invoke when done
+ */
+Items.prototype.getListings = function(params, cb) {
+  if (typeof params !== 'object' ||
+    !params.itemId || !params.page || !params.buyOrSell) {
+    throw new Error('A valid params parameter must be supplied');
+  }
+
+  spidyClient.get(
+    '/listings/' + params.buyOrSell + '/' + params.page,
+    function(err, json) {
+      if (err) {
+        cb(err);
+        return;
+      }
+
+      var response = new ItemListingsResponse(json);
+      cb(null, response);
+    }
+  );
+};
+
+/**
+ * <p>This is a wrapper to {@link Items#getListings}. The <code>params</code>
+ * parameter can be a number, identifying the item to look up, or an object
+ * with properties "itemId" and "page".</p>
+ *
+ * <p>Example:</p>
+ *
+ * <pre>
+ * {
+ *   itemId: 49192,
+ *   page: 1
+ * }
+ * </pre>
+ *
+ * @param {number|object} params The item id to look up or a valid params object
+ * @param {Items~ItemListingsCallback} cb The callback to invoke when done
+ */
+Items.prototype.getBuyListings = function(params, cb) {
+  var itemId = -1,
+      page = 1;
+  if (typeof params === 'object') {
+    itemId = params.itemId;
+    page = params.page;
+  } else if (typeof params === 'number') {
+    itemId = params;
+  }
+
+  this.getListings({
+    itemId: itemId,
+    page: page,
+    buyOrSell: 'buy'
+  }, cb);
+};
+
+/**
+ * <p>This is a wrapper to {@link Items#getListings}. The <code>params</code>
+ * parameter can be a number, identifying the item to look up, or an object
+ * with properties "itemId" and "page".</p>
+ *
+ * <p>Example:</p>
+ *
+ * <pre>
+ * {
+ *   itemId: 49192,
+ *   page: 1
+ * }
+ * </pre>
+ *
+ * @param {number|object} params The item id to look up or a valid params object
+ * @param {Items~ItemListingsCallback} cb The callback to invoke when done
+ */
+Items.prototype.getSellListings = function(params, cb) {
+  var itemId = -1,
+      page = 1;
+  if (typeof params === 'object') {
+    itemId = params.itemId;
+    page = params.page;
+  } else if (typeof params === 'number') {
+    itemId = params;
+  }
+
+  this.getListings({
+    itemId: itemId,
+    page: page,
+    buyOrSell: 'sell'
+  }, cb);
+};
+
+/**
  * <p>Search for items in the GW2 Spidy database. The search <code>term</code>
  * can be a string or an object.</p>
  *
@@ -114,10 +229,16 @@ Items.prototype.search = function(term, cb) {
   });
 };
 
-exports = module.exports = function($spidyClient, $ItemListResponse, $ItemDataResponse) {
+exports = module.exports = function(
+  $spidyClient,
+  $ItemListResponse,
+  $ItemDataResponse,
+  $ItemListingsResponse
+) {
   spidyClient = $spidyClient;
   ItemListResponse = $ItemListResponse;
   ItemDataResponse = $ItemDataResponse;
+  ItemListingsResponse = $ItemListingsResponse;
 
   return new Items();
 };
@@ -125,6 +246,7 @@ exports = module.exports = function($spidyClient, $ItemListResponse, $ItemDataRe
 exports['@require'] = [
   'spidyClient',
   'models/ItemListResponse',
-  'models/ItemDataResponse'
+  'models/ItemDataResponse',
+  'models/ItemListingsResponse'
 ];
 exports['@singleton'] = true;
